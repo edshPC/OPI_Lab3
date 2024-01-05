@@ -1,38 +1,59 @@
-#page {
-    display: grid;
-    min-height: 100%;
-}
-
-.button-nav {
-    display: inline-block;
-    font-weight: bold;
-    color: #fff;
+html {
+    font-family: "Courier", monospace;
+    background: linear-gradient(45deg, #cc97ff, #d6e5ff, #e0d4ff, #e6f4ff);
+    background-attachment: fixed;
+    margin: 0;
+    height: 100%;
     width: 100%;
-    text-decoration: none;
-    text-shadow: 0 -1px rgba(0, 0, 0, .5);
-    user-select: none;
-    padding: .7em 1.5em;
-    border: 1px solid rgb(80, 32, 0);
-    border-radius: 5px;
-    outline: none;
-    background: rgb(147, 80, 36) linear-gradient(rgb(106, 58, 26), rgb(147, 80, 36) 80%);
-    box-shadow: 0 6px rgb(86, 38, 6),
-    0 3px 15px rgba(0, 0, 0, .4),
-    inset 0 1px rgba(255, 255, 255, .3),
-    inset 0 0 3px rgba(255, 255, 255, .5);
-    transition: .2s;
+    font-size: 16px;
+    font-weight: bold;
 }
 
-.button-nav:hover {
-    background: rgb(167, 91, 41) linear-gradient(rgb(126, 69, 31), rgb(167, 91, 41) 80%);
+h2 {
+    font-size: 20px;
 }
 
-.button-nav:active {
-    background: rgb(120, 63, 25) linear-gradient(rgb(120, 63, 25) 20%, rgb(167, 91, 41));
-    box-shadow: 0 2px rgb(86, 38, 6),
-    0 1px 6px rgba(0, 0, 0, .4),
-    inset 0 1px rgba(255, 255, 255, .3),
-    inset 0 0 3px rgba(255, 255, 255, .5);
-    transform: translate(0, 4px);
+#content {
+    background-color: white;
+}
 
+#page {
+    width: 95%;
+    margin: auto;
+    border-spacing: 8px;
+}
+
+.top {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    color: black;
+    background-color: #ffdeea;
+}
+
+#coordinates {
+    vertical-align: top;
+    width: 30%;
+}
+
+#buttons {
+    width: 50%;
+    padding: 3px;
+    margin: 0 auto;
+    display: block;
+    border-radius: 8px;
+}
+
+.button {
+    height: 27px;
+    width: 70px;
+    font-family: "Courier", monospace;
+    font-size: 16px;
+    font-weight: bold;
+    color: black;
+    background-color: #ffdeea;
+}
+
+.button:hover {
+    background-color: #cc97ff;
 }

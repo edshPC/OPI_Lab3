@@ -1,7 +1,12 @@
-#footer {
+.footer {
+    padding: 6px;
     text-align: center;
-    /*color: aquamarine;*/
-    /*font-size: 14px;*/
-    background-color: antiquewhite;
-    padding: 20px;
+    font-size: 20px;
+    color: black;
+    background-color: #ffdeea;
+}
+
+.footer:after {
+    content: '♥';
+    color: red;
 }

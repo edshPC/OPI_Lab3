@@ -10,7 +10,7 @@
     <ui:composition template="/templates/layout.xhtml">
         <ui:define name="content">
             <f:metadata>
-                <f:event type="preRenderView" listener="#{resultManager.init}"/>
+<!--                <f:event type="preRenderView" listener="#{resultManager.init}"/>-->
             </f:metadata>
             <table id="page">
                 <tbody>
@@ -23,7 +23,7 @@
                             <ui:include src="templates/svg.html"/>
                         </div>
                     </td>
-                    <td id="table" rowspan="2">
+                    <td id="table">
                         <div class="top">
                             <h2>Table</h2>
                         </div>
