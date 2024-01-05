@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:body>
+    <ui:composition template="/templates/layout.xhtml">
+        <ui:define name="content">
+            <f:metadata>
+                <f:event type="preRenderView" listener="#{resultManager.init}"/>
+            </f:metadata>
+            <table id="page">
+                <tbody>
+                <tr>
+                    <td id="graph">
+                        <div class="top">
+                            <h2>Graph</h2>
+                        </div>
+                        <div id="image">
+                            <ui:include src="templates/svg.html"/>
+                        </div>
+                    </td>
+                    <td id="table" rowspan="2">
+                        <div class="top">
+                            <h2>Table</h2>
+                        </div>
+                        <div id="result-table">
+                            <table id="restable">
+                                <h:panelGroup>
+                                    <h:dataTable value="#{resultManager.results}" var="result">
+                                        <h:column>
+                                            <f:facet name="header" class="column-type1">X</f:facet>
+                                            #{result.x}
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header" class="column-type1">Y</f:facet>
+                                            #{result.y}
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header" class="column-type1">R</f:facet>
+                                            #{result.r}
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header" class="column-type2">Hit</f:facet>
+                                            #{result.hit}
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header" class="column-type3">Current Time</f:facet>
+                                            #{result.currentTime}
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header" class="column-type3">Execution Time</f:facet>
+                                            #{result.executionTime}
+                                        </h:column>
+                                    </h:dataTable>
+                                </h:panelGroup>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="coordinates">
+                        <div class="top">
+                            <h2>Coordinates</h2>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </ui:define>
+        <ui:define name="scripts">
+            <script type="module" src="./resources/js/index.js"></script>
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>

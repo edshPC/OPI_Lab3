@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Web Lab №3 --- aulouu / tsostanov</title>
+    <link rel="shortcut icon"
+          href="#{request.contextPath}/assets/favicon.ico"
+    />
+    <h:outputStylesheet library="stylesheets" name="footer.css"/>
+    <h:outputStylesheet library="stylesheets" name="main.css"/>
+    <h:outputStylesheet library="stylesheets" name="clock.css"/>
+    <h:outputStylesheet library="stylesheets" name="graph.css"/>
+    <h:outputStylesheet library="stylesheets" name="header.css"/>
+    <h:outputStylesheet library="stylesheets" name="table.css"/>
+</h:head>
+<h:body>
+    <div id="page">
+        <div id="header">
+            <ui:insert name="header">
+                <ui:include src="header.xhtml"/>
+            </ui:insert>
+        </div>
+        <div id="content">
+            <ui:insert name="content">
+                <ui:include src="content.xhtml"/>
+            </ui:insert>
+        </div>
+        <div id="footer">
+            <ui:insert name="footer">
+                <ui:include src="footer.xhtml"/>
+            </ui:insert>
+        </div>
+        <ui:insert name="scripts"/>
+    </div>
+</h:body>
+</html>
