@@ -13,10 +13,6 @@ h2 {
     font-size: 20px;
 }
 
-#content {
-    background-color: white;
-}
-
 #page {
     width: 95%;
     margin: auto;
@@ -36,12 +32,32 @@ h2 {
     width: 30%;
 }
 
-#buttons {
-    width: 50%;
+#input {
+    width: 100%;
+    background-color: white;
+    margin: auto;
+}
+
+#input-table {
+    text-align: center;
+    width: 95%;
+}
+
+.label {
+    width: 20%;
+    font-size: 20px;
+}
+
+.value {
+    width: 90%;
+    margin: 2% 0;
     padding: 3px;
-    margin: 0 auto;
-    display: block;
-    border-radius: 8px;
+}
+
+#buttons {
+    width: 100%;
+    margin: 1% 0;
+    padding: 3px;
 }
 
 .button {
@@ -52,6 +68,7 @@ h2 {
     font-weight: bold;
     color: black;
     background-color: #ffdeea;
+    border: none;
 }
 
 .button:hover {

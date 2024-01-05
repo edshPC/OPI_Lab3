@@ -3,16 +3,20 @@ body, h1, h2, p, div, span {
     padding: 0;
     font-family: "Courier", monospace;
 }
+
 .wrapper {
+    background-color: white;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 50vh;
     width: 100%;
 }
+
 .display {
     text-align: center;
 }
+
 #time {
     font-size: 2em;
     font-weight: bold;

@@ -10,7 +10,7 @@
     <ui:composition template="/templates/layout.xhtml">
         <ui:define name="content">
             <f:metadata>
-<!--                <f:event type="preRenderView" listener="#{resultManager.init}"/>-->
+                <!--                <f:event type="preRenderView" listener="#{resultManager.init}"/>-->
             </f:metadata>
             <table id="page">
                 <tbody>
@@ -65,6 +65,120 @@
                     <td id="coordinates">
                         <div class="top">
                             <h2>Coordinates</h2>
+                        </div>
+                        <div id="input">
+                            <p:messages id="messagesC" showSummary="false" showDetail="true" closable="true">
+                                <h:outputText/>
+                            </p:messages>
+                            <h:form id="graph-form">
+                                <table id="input-table">
+                                    <tbody>
+                                    <tr>
+                                        <td class="label">
+                                            <label>X:</label>
+                                        </td>
+                                        <td>
+                                            <div class="value" id="x-block">
+                                                <label class="xbox-label">
+                                                    <p:selectBooleanCheckbox class="x-value"
+                                                                             value="#{resultManager.currentResult.x}"
+                                                                             required="true"/>
+                                                    -5
+                                                </label>
+                                                <label class="xbox-label">
+                                                    <p:selectBooleanCheckbox class="x-value"
+                                                                             value="#{resultManager.currentResult.x}"
+                                                                             required="true"/>
+                                                    -4
+                                                </label>
+                                                <label class="xbox-label">
+                                                    <p:selectBooleanCheckbox class="x-value"
+                                                                             value="#{resultManager.currentResult.x}"
+                                                                             required="true"/>
+                                                    -3
+                                                </label>
+                                                <label class="xbox-label">
+                                                    <p:selectBooleanCheckbox class="x-value"
+                                                                             value="#{resultManager.currentResult.x}"
+                                                                             required="true"/>
+                                                    -2
+                                                </label>
+                                                <label class="xbox-label">
+                                                    <p:selectBooleanCheckbox class="x-value"
+                                                                             value="#{resultManager.currentResult.x}"
+                                                                             required="true"/>
+                                                    -1
+                                                </label>
+                                                <label class="xbox-label">
+                                                    <p:selectBooleanCheckbox class="x-value"
+                                                                             value="#{resultManager.currentResult.x}"
+                                                                             required="true"/>
+                                                    0
+                                                </label>
+                                                <label class="xbox-label">
+                                                    <p:selectBooleanCheckbox class="x-value"
+                                                                             value="#{resultManager.currentResult.x}"
+                                                                             required="true"/>
+                                                    1
+                                                </label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="label">
+                                            <label>Y:</label>
+                                        </td>
+                                        <td>
+                                            <div class="value" id="y-block">
+                                                <p:inputText id="y-value" maxlength="6" autocomplete="false"
+                                                             required="true"
+                                                             placeholder="(-5;3)"
+                                                             value="#{resultManager.currentResult.y}">
+                                                    <!--                                        <f:validator validatorId="validatorY"/>-->
+                                                </p:inputText>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="label">
+                                            <label>R:</label>
+                                        </td>
+                                        <td>
+                                            <div class="value" id="r-block">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                            <div id="buttons">
+                                                <h:commandButton type="submit" value="SUBMIT" class="button"
+                                                                 ajax="false"
+                                                                 action="#{resultManager.addResult}"/>
+                                                <h:commandButton type="reset" value="RESET" class="button"/>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </h:form>
+                            <h:form id="graph-form-hidden" style="display: none;">
+                                <p:inputNumber id="x-value-hidden"
+                                               minValue="-5"
+                                               maxValue="1"
+                                               value="#{resultManager.currentResult.x}"/>
+                                <p:inputNumber id="y-value-hidden"
+                                               minValue="-5"
+                                               maxValue="3"
+                                               value="#{resultManager.currentResult.y}"/>
+                                <p:inputNumber id="r-value-hidden"
+                                               minValue="1"
+                                               maxValue="5"
+                                               value="#{resultManager.currentResult.r}"/>
+                                <p:commandButton value="Submit"
+                                                 ajax="false"
+                                                 action="#{resultManager.addResult}">
+                                </p:commandButton>
+                            </h:form>
                         </div>
                     </td>
                 </tr>
