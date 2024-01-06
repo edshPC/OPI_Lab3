@@ -9,35 +9,30 @@ export default class Graph {
         return this.svgPoint;
     }
 
-    drawDot(xValues, y, r, isHit, valOfDiv) {
+    drawDot(x, y, r, isHit) {
         const radius = 3;
         const svgns = "http://www.w3.org/2000/svg";
         const svg = document.querySelector('svg');
         const dotsObjects = sessionStorage.getItem("dotsObjects") ? JSON.parse(sessionStorage.getItem("dotsObjects")) : [];
 
-        // Проходим по каждому значению x
-        xValues.forEach(x => {
-            // Создаем объект, представляющий точку
-            const dotObject = {
-                x: x,
-                y: y,
-                r: r,
-                isHit: isHit,
-                radius: radius,
-                valOfDiv: valOfDiv
-            };
+        const dotObject = {
+            x: x,
+            y: y,
+            r: r,
+            isHit: isHit,
+            radius: radius,
+        };
 
-            const dot = document.createElementNS(svgns, 'circle');
-            dot.setAttributeNS(null, 'cx', x);
-            dot.setAttributeNS(null, 'cy', y);
-            dot.setAttributeNS(null, 'class', "target-dot");
-            dot.setAttributeNS(null, 'r', radius.toString());
-            dot.setAttributeNS(null, 'style', 'fill: ' + (isHit ? 'green' : 'red') + '');
+        const dot = document.createElementNS(svgns, 'circle');
+        dot.setAttributeNS(null, 'cx', x);
+        dot.setAttributeNS(null, 'cy', y);
+        dot.setAttributeNS(null, 'class', "target-dot");
+        dot.setAttributeNS(null, 'r', radius.toString());
+        dot.setAttributeNS(null, 'style', 'fill: ' + (isHit ? 'green' : 'red') + '');
 
-            svg.appendChild(dot);
+        svg.appendChild(dot);
 
-            dotsObjects.push(JSON.stringify(dotObject));
-        });
+        dotsObjects.push(JSON.stringify(dotObject));
 
         sessionStorage.setItem('dotsObjects', JSON.stringify(dotsObjects));
     }
