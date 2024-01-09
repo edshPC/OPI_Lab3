@@ -33,27 +33,27 @@
                                     <h:dataTable value="#{resultManager.results}" var="result">
                                         <h:column>
                                             <f:facet name="header" class="column-type1">X</f:facet>
-                                            #{result.x}
+                                            #{hit.x}
                                         </h:column>
                                         <h:column>
                                             <f:facet name="header" class="column-type1">Y</f:facet>
-                                            #{result.y}
+                                            #{hit.y}
                                         </h:column>
                                         <h:column>
                                             <f:facet name="header" class="column-type1">R</f:facet>
-                                            #{result.r}
+                                            #{hit.r}
                                         </h:column>
                                         <h:column>
                                             <f:facet name="header" class="column-type2">Hit</f:facet>
-                                            #{result.hit}
+                                            #{hit.hit}
                                         </h:column>
                                         <h:column>
                                             <f:facet name="header" class="column-type3">Current Time</f:facet>
-                                            #{result.currentTime}
+                                            #{hit.currentTime}
                                         </h:column>
                                         <h:column>
                                             <f:facet name="header" class="column-type3">Execution Time</f:facet>
-                                            #{result.executionTime}
+                                            #{hit.executionTime}
                                         </h:column>
                                     </h:dataTable>
                                 </h:panelGroup>

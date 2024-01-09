@@ -4,7 +4,7 @@ export default class Validator {
     }
 
     static isRectangle(x, y, r) {
-        return y >= -r && x >= -r/2 && x <= 0 && y <= 0;
+        return y >= -r && x >= -r / 2 && x <= 0 && y <= 0;
     }
 
     static isCircle(x, y, r) {
