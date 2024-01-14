@@ -2,12 +2,16 @@ package beans;
 
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Named;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 
 import java.io.Serializable;
 
 @Named("abstractPoint")
 @SessionScoped
 public class Hit implements Serializable {
+    @Id
+    @GeneratedValue
     private Long id;
 
     private float x = 0;
@@ -16,6 +20,9 @@ public class Hit implements Serializable {
     private boolean result;
     private String currentTime;
     private long executionTime;
+
+    public Hit() {
+    }
 
     public Hit(float x, float y, float r) {
         this.x = x;
@@ -87,6 +94,24 @@ public class Hit implements Serializable {
 
     public void setResult(boolean result) {
         this.result = result;
+    }
+
+    public String getResultWord(){
+        return (result)
+                ? "Попадание"
+                : "Промах";
+    }
+
+    public String getResultString(){
+        return (result)
+                ? "попадание"
+                : "промах";
+    }
+
+    public String getResultHTMLClass(){
+        return (result)
+                ? "green-status"
+                : "red-status";
     }
 
     @Override
