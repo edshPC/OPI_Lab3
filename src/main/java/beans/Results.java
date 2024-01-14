@@ -13,7 +13,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.LinkedList;
 import java.util.Map;
 
-@Named("pointHandler")
+@Named("results")
 @SessionScoped
 public class Results implements Serializable {
     private Hit hit = new Hit();
