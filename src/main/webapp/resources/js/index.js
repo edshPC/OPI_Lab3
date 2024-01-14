@@ -39,7 +39,7 @@ yInput.addEventListener('input', function () {
         const yValue = parseFloat(inputValue.replace(',', '.'));
         submitButton.disabled = !Validator.isValidY(yValue);
         if (submitButton.disabled || isNaN(yValue)) {
-            yInput.setCustomValidity("Enter a valid number between -3 and 3 with max length 14");
+            yInput.setCustomValidity("Enter a valid number between -5 and 3 with max length 14");
             yInput.reportValidity();
         } else {
             yInput.setCustomValidity("");
@@ -47,7 +47,7 @@ yInput.addEventListener('input', function () {
         }
     } else {
         submitButton.disabled = true;
-        yInput.setCustomValidity("Enter a valid number between -3 and 3 with maximum one decimal point");
+        yInput.setCustomValidity("Enter a valid number between -5 and 3 with maximum one decimal point");
         yInput.reportValidity();
     }
 });
