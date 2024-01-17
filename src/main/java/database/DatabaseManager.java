@@ -9,47 +9,78 @@ import java.util.LinkedList;
 import java.util.Properties;
 
 public class DatabaseManager {
-    private final String JDBC_DRIVER = "org.postgresql.Driver";
-    public static final String DATABASE_URL = "jdbc:postgresql://localhost:5432/studs";
-    public static final String DATABASE_URL_HELIOS = "jdbc:postgresql://pg:5432/studs";
-    String dbProps = "db.cfg";
-    private Connection connection;
-    public boolean isConnect = false;
+//    private final String JDBC_DRIVER = "org.postgresql.Driver";
+//    public static final String DATABASE_URL = "jdbc:postgresql://localhost:5432/studs";
+//    public static final String DATABASE_URL_HELIOS = "jdbc:postgresql://pg:5432/studs";
+//    String dbProps = "db.cfg";
+//    private Connection connection;
+//    public boolean isConnect = false;
+//
+//    public DatabaseManager() {
+//        try {
+//            this.connectToDatabase(dbProps);
+//            if (isConnect)
+//                this.createTables();
+//        } catch (SQLException exception) {
+//            System.err.println("Таблицы уже существуют.");
+//        }
+//    }
+//
+//    public void connectToDatabase(String propertiesFile) {
+//        Properties properties = null;
+//        try {
+//            properties = new Properties();
+//            try (FileReader fr = new FileReader(propertiesFile)) {
+//                properties.load(fr);
+//            } catch (IOException exception) {
+//                System.out.println("Ошибка в чтении конфинга базы данных.");
+//                isConnect = false;
+//            }
+//            Class.forName(JDBC_DRIVER);
+//            connection = DriverManager.getConnection(DATABASE_URL, properties);
+//            System.out.println("Соединение с базой данных установлено.");
+//            isConnect = true;
+//        } catch (SQLException exception) {
+//            try {
+//                connection = DriverManager.getConnection(DATABASE_URL_HELIOS, properties);
+//            } catch (SQLException ex) {
+//                System.err.println("Произошла ошибка при подключении к базе данных.");
+//                isConnect = false;
+//            }
+//        } catch (ClassNotFoundException exception) {
+//            System.err.println("Драйвер управления базой данных не найден.");
+//            isConnect = false;
+//        }
+//    }
+private Connection connection;
+    private final String user = "s373317";
+    private final String password = "lB4Kx4sgsYZDjzhZ";
+    private final String DATABASE_URL = "jdbc:postgresql://localhost:5432/studs";
+    public final String DATABASE_URL_HELIOS = "jdbc:postgresql://pg:5432/studs";
 
-    public DatabaseManager() {
+
+    public DatabaseManager(){
         try {
-            this.connectToDatabase(dbProps);
-            if (isConnect)
-                this.createTables();
-        } catch (SQLException exception) {
-            System.err.println("Таблицы уже существуют.");
+            this.connect();
+            this.createTables();
+        } catch (SQLException e) {
+            System.err.println("Ошибка при исполнени изначального запроса либо таблицы уже созданы");
         }
     }
 
-    public void connectToDatabase(String propertiesFile) {
-        Properties properties = null;
+    public void connect(){
+        Properties info = null;
         try {
-            properties = new Properties();
-            try (FileReader fr = new FileReader(propertiesFile)) {
-                properties.load(fr);
-            } catch (IOException exception) {
-                System.out.println("Ошибка в чтении конфинга базы данных.");
-                isConnect = false;
-            }
-            Class.forName(JDBC_DRIVER);
-            connection = DriverManager.getConnection(DATABASE_URL, properties);
-            System.out.println("Соединение с базой данных установлено.");
-            isConnect = true;
-        } catch (SQLException exception) {
-            try {
-                connection = DriverManager.getConnection(DATABASE_URL_HELIOS, properties);
+            connection = DriverManager.getConnection(DATABASE_URL, user, password);
+        } catch (SQLException e) {
+            try{
+                connection = DriverManager.getConnection(DATABASE_URL_HELIOS, user, password);
             } catch (SQLException ex) {
-                System.err.println("Произошла ошибка при подключении к базе данных.");
-                isConnect = false;
+                System.err.println("Невозможно подключиться к базе данных");
+                e.printStackTrace();
+                ex.printStackTrace();
+                System.exit(1);
             }
-        } catch (ClassNotFoundException exception) {
-            System.err.println("Драйвер управления базой данных не найден.");
-            isConnect = false;
         }
     }
 
