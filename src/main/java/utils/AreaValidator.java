@@ -3,16 +3,38 @@ package utils;
 import models.Point;
 
 public class AreaValidator {
+    private static final double X_MAX = 1;
+    private static final double X_MIN = -5;
+    private static final double Y_MAX = 3;
+    private static final double Y_MIN = -5;
+    private static final double R_MAX = 5;
+    private static final double R_MIN = 1;
+
     public static boolean checkArea(Point point) {
         double x = point.getX();
         double y = point.getY();
         double r = point.getR();
-        if (x > 0 && y < 0 && (x * x + y * y > r * r / 4)) return false;
-        if (x < 0 && y > 0 && (y > x + r)) return false;
-        if (x > 0 && y > 0 && (x > r || y > r / 2)) return false;
-        if (x < 0 && y < 0) return false;
-        if (x == 0 && (y > r || y < -r)) return false;
-        if (y == 0 && (x > r || x < -r / 2)) return false;
-        return true;
+        if (x > X_MAX || x < X_MIN) {
+            return false;
+        }
+        if (y > Y_MAX || y < Y_MIN) {
+            return false;
+        }
+        if (r > R_MAX || r < R_MIN) {
+            return false;
+        }
+        return isCircle(x, y, r) || isRectangle(x, y, r) || isTriangle(x, y, r);
+    }
+
+    private static boolean isRectangle(double x, double y, double r) {
+        return y >= -r && x >= -r / 2 && x <= 0 && y <= 0;
+    }
+
+    private static boolean isCircle(double x, double y, double r) {
+        return x * x + y * y <= (r * r) && x <= 0 && y >= 0;
+    }
+
+    private static boolean isTriangle(double x, double y, double r) {
+        return x >= 0 && y >= 0 && y <= -x + r;
     }
 }

@@ -129,15 +129,15 @@ class Printer{
             this.ctx.strokeStyle = "#dfd3e3";
             this.ctx.beginPath();
             this.ctx.moveTo(this.SIZE / 2, this.SIZE / 2);
-            this.ctx.lineTo(this.SIZE / 2, this.SIZE / 2 - r * pixels / 2);
-            this.ctx.lineTo(this.SIZE / 2 + r * pixels, this.SIZE / 2 - r * pixels / 2);
-            this.ctx.lineTo(this.SIZE / 2 + r * pixels, this.SIZE / 2);
+            this.ctx.lineTo(this.SIZE / 2, this.SIZE / 2 + r * pixels);
+            this.ctx.lineTo(this.SIZE / 2 - r * pixels / 2, this.SIZE / 2 + r * pixels);
+            this.ctx.lineTo(this.SIZE / 2 - r * pixels / 2, this.SIZE / 2);
             this.ctx.lineTo(this.SIZE / 2, this.SIZE / 2);
             this.ctx.fill();
 
             this.ctx.beginPath();
             this.ctx.moveTo(this.SIZE / 2, this.SIZE / 2);
-            this.ctx.lineTo(this.SIZE / 2 - r * pixels, this.SIZE / 2);
+            this.ctx.lineTo(this.SIZE / 2 + r * pixels, this.SIZE / 2);
             this.ctx.lineTo(this.SIZE / 2, this.SIZE / 2 - r * pixels);
             this.ctx.lineTo(this.SIZE / 2, this.SIZE / 2);
             this.ctx.fill();
@@ -147,15 +147,16 @@ class Printer{
             this.ctx.arc(
                 this.SIZE / 2,
                 this.SIZE / 2,
-                r * pixels / 2,
-                Math.PI * 2,
-                Math.PI / 2,
+                r * pixels,
+                Math.PI,
+                Math.PI * 3 / 2,
+                false
             );
-            this.ctx.moveTo(this.SIZE / 2, this.SIZE / 2);
-            this.ctx.lineTo(this.SIZE / 2, this.SIZE / 2 + r * pixels / 2);
-            this.ctx.lineTo(this.SIZE / 2 + r * pixels / 2, this.SIZE / 2);
             this.ctx.lineTo(this.SIZE / 2, this.SIZE / 2);
+            this.ctx.closePath();
             this.ctx.fill();
+
+
         }
     }
 
