@@ -12,6 +12,7 @@
 
     <h:outputScript library="scripts" name="Printer.js"/>
     <h:outputScript library="scripts" name="main.js"/>
+    <h:outputScript library="scripts" name="validX.js"/>
 
     <link rel="stylesheet" type="text/css" href="resources/styles/mainPageStyle.css"/>
     <link rel="icon"
@@ -39,13 +40,27 @@
                 <label for="outputX">X:</label>
                 <h:panelGrid columns="1" style="margin-bottom: 10px">
                     <h:inputHidden id="x" required="true" value="#{userBean.point.x}"/>
-                    <p:selectBooleanCheckbox value="false" id="bcb-5" onclick="pressX(this.id)">-5</p:selectBooleanCheckbox>
-                    <p:selectBooleanCheckbox value="false" id="bcb-4" onclick="pressX(this.id)">-4</p:selectBooleanCheckbox>
-                    <p:selectBooleanCheckbox value="false" id="bcb-3" onclick="pressX(this.id)">-3</p:selectBooleanCheckbox>
-                    <p:selectBooleanCheckbox value="false" id="bcb-2" onclick="pressX(this.id)">-2</p:selectBooleanCheckbox>
-                    <p:selectBooleanCheckbox value="false" id="bcb-1" onclick="pressX(this.id)">-1</p:selectBooleanCheckbox>
-                    <p:selectBooleanCheckbox value="false" id="bcb0" onclick="pressX(this.id)">0</p:selectBooleanCheckbox>
-                    <p:selectBooleanCheckbox value="false" id="bcb1" onclick="pressX(this.id)">1</p:selectBooleanCheckbox>
+                    <p:selectBooleanCheckbox class="checkbox" value="-5"> -5
+                        <f:ajax onevent="checkboxValidate(-5)" render="x" listener="#{userBean.point.setX(-5)}"/>
+                    </p:selectBooleanCheckbox>
+                    <p:selectBooleanCheckbox class="checkbox" value="-4"> -4
+                        <f:ajax onevent="checkboxValidate(-4)" render="x" listener="#{userBean.point.setX(-4)}"/>
+                    </p:selectBooleanCheckbox>
+                    <p:selectBooleanCheckbox class="checkbox" value="-3"> -3
+                        <f:ajax onevent="checkboxValidate(-3)" render="x" listener="#{userBean.point.setX(-3)}"/>
+                    </p:selectBooleanCheckbox>
+                    <p:selectBooleanCheckbox class="checkbox" value="-2"> -2
+                        <f:ajax onevent="checkboxValidate(-2)" render="x" listener="#{userBean.point.setX(-2)}"/>
+                    </p:selectBooleanCheckbox>
+                    <p:selectBooleanCheckbox class="checkbox" value="-1"> -1
+                        <f:ajax onevent="checkboxValidate(-1)" render="x" listener="#{userBean.point.setX(-1)}"/>
+                    </p:selectBooleanCheckbox>
+                    <p:selectBooleanCheckbox class="checkbox" value="0"> 0
+                        <f:ajax onevent="checkboxValidate(0)" render="x" listener="#{userBean.point.setX(0)}"/>
+                    </p:selectBooleanCheckbox>
+                    <p:selectBooleanCheckbox class="checkbox" value="1"> 1
+                        <f:ajax onevent="checkboxValidate(1)" render="x" listener="#{userBean.point.setX(1)}"/>
+                    </p:selectBooleanCheckbox>
                 </h:panelGrid>
             </div>
                 <div>
