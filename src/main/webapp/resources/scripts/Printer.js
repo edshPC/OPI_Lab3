@@ -236,12 +236,12 @@ class Printer{
             return;
         }
 
-        if(x >= 4 || x <= -4 || y >= 5 || y <= -5) {
-            // var setError = document.getElementById("checkButton");
-            // setError.setCustomValidity("Selected point is out of area:\nX: [-5; 3]\nY: (-5; 5)");
-            // setError.reportValidity();
-            return;
-        }
+        // if(x >= 4 || x <= -4 || y >= 5 || y <= -5) {
+        //     var setError = document.getElementById("checkButton");
+        //     setError.setCustomValidity("Selected point is out of area:\nX: [-5; 3]\nY: (-5; 5)");
+        //     setError.reportValidity();
+        //     return;
+        // }
 
         addAttempt(
             [
