@@ -10,11 +10,11 @@ import java.io.Serializable;
 @Named("abstractPoint")
 @SessionScoped
 public class Point implements Serializable {
-    private long id;
-    private double x, y, r;
+    private Long id;
+    private Double x, y, r;
     private String currentTime;
     private String executionTime;
-    private boolean success;
+    private Boolean success;
     public Point() {
     }
 
@@ -34,35 +34,35 @@ public class Point implements Serializable {
         this.success = success;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public double getX() {
+    public Double getX() {
         return x;
     }
 
-    public void setX(double x) {
+    public void setX(Double x) {
         this.x = x;
     }
 
-    public double getY() {
+    public Double getY() {
         return y;
     }
 
-    public void setY(double y) {
+    public void setY(Double y) {
         this.y = y;
     }
 
-    public double getR() {
+    public Double getR() {
         return r;
     }
 
-    public void setR(double r) {
+    public void setR(Double r) {
         this.r = r;
     }
 
@@ -82,7 +82,7 @@ public class Point implements Serializable {
         this.executionTime = executionTime;
     }
 
-    public boolean getSuccess() {
+    public Boolean getSuccess() {
         return success;
     }
 
