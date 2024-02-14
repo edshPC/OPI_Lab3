@@ -25,6 +25,13 @@ public class UserBean implements Serializable {
         this.requests = DatabaseHandler.getDatabaseManager().loadCollection();
     }
 
+
+//    public boolean checkPoint() {
+//        if (point.getY() < -5 || point.getY() > 3) {
+//
+//        }
+//    }
+
     public void add(){
         long timer = System.nanoTime();
         point.setCurrentTime(DateTimeFormatter.ofPattern("HH:mm:ss").format(LocalDateTime.now()));

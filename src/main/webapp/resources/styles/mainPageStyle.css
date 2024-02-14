@@ -93,9 +93,6 @@ fieldset {
     background-color: #dfd3e3;
     width: 90px;
 }
-.btn {
-
-}
 
 #xButtons > button:hover {
     background-color: #c6aec7;
@@ -229,7 +226,7 @@ header::after {
     margin-left: 100px;
 }
 
-#mainForm\:checkButton:hover, #mainForm\:clearButton:hover{
+#mainForm\:checkButton:hover, #mainForm\:clearButton:hover, #mainForm\:cmd1:hover, #mainForm\:cmd1:focus, #mainForm\:cmd2:hover, #mainForm\:cmd2:focus, #mainForm\:cmd3:hover, #mainForm\:cmd3:focus, #mainForm\:cmd4:hover, #mainForm\:cmd4:focus, #mainForm\:cmd5:hover, #mainForm\:cmd5:focus{
     background-color: #c6aec7;
 }
 
@@ -244,23 +241,7 @@ header::after {
     margin-left: 10px;
 }
 
-
-
-body .ui-slider .ui-slider-handle {
-    width: 1.143rem;
-    height: 1.143rem;
-    background: #fff;
-    border: 2px solid #c6aec7;
-    transition: background-color .2s,color .2s,border-color .2s,box-shadow .2s,opacity .2s;
-    border-radius: 50%;
-    top: 0.08rem;
-}
-
-body .ui-slider .ui-slider-handle:hover {
-    background-color: #c6aec7;
-    border: 2px solid #c6aec7;
-}
-
-body .ui-slider.ui-slider-horizontal .ui-slider-handle {
-    top: 0.08rem;
+#mainForm\:rbtns {
+    display: flex;
+    justify-content: space-around;
 }

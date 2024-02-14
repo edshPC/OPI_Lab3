@@ -18,13 +18,13 @@ public class Point implements Serializable {
     public Point() {
     }
 
-    public Point(double x, double y, double r) {
+    public Point(Double x, Double y, Double r) {
         this.x = x;
         this.y = y;
         this.r = r;
     }
 
-    public Point(long id, double x, double y, double r, boolean success, String currentTime, String executionTime) {
+    public Point(Long id, Double x, Double y, Double r, Boolean success, String currentTime, String executionTime) {
         this.id = id;
         this.x = x;
         this.y = y;
@@ -86,7 +86,7 @@ public class Point implements Serializable {
         return success;
     }
 
-    public void setSuccess(boolean success) {
+    public void setSuccess(Boolean success) {
         this.success = success;
     }
 }
