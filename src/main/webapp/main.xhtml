@@ -10,9 +10,9 @@
 >
 <h:head>
 
-    <h:outputScript library="scripts" name="Printer.js"/>
-    <h:outputScript library="scripts" name="main.js"/>
-    <h:outputScript library="scripts" name="validX.js"/>
+<!--    <h:outputScript library="scripts" name="Printer.js"/>-->
+<!--    <h:outputScript library="scripts" name="main.js"/>-->
+
 
     <link rel="stylesheet" type="text/css" href="resources/styles/mainPageStyle.css"/>
     <link rel="icon"
@@ -40,25 +40,25 @@
             <div>
                 <label>X:</label>
                 <h:selectBooleanCheckbox class="checkbox" value="-5" id="r-5"> -5
-                    <f:ajax onclick="checkboxValidate(-5)" render="x" listener="#{userBean.point.setX(-5)}"/>
+                    <f:ajax render="x" listener="#{userBean.point.setX(-5)}"/>
                 </h:selectBooleanCheckbox>
                 <h:selectBooleanCheckbox class="checkbox" value="-4" id="r-4"> -4
-                    <f:ajax onclick="checkboxValidate(-4)" render="x" listener="#{userBean.point.setX(-4)}"/>
+                    <f:ajax render="x" listener="#{userBean.point.setX(-4)}"/>
                 </h:selectBooleanCheckbox>
                 <h:selectBooleanCheckbox class="checkbox" value="-3"> -3
-                    <f:ajax onclick="checkboxValidate(-3)" render="x" listener="#{userBean.point.setX(-3)}"/>
+                    <f:ajax render="x" listener="#{userBean.point.setX(-3)}"/>
                 </h:selectBooleanCheckbox>
                 <h:selectBooleanCheckbox class="checkbox" value="-2"> -2
-                    <f:ajax onclick="checkboxValidate(-2)" render="x" listener="#{userBean.point.setX(-2)}"/>
+                    <f:ajax render="x" listener="#{userBean.point.setX(-2)}"/>
                 </h:selectBooleanCheckbox>
                 <h:selectBooleanCheckbox class="checkbox" value="-1"> -1
-                    <f:ajax onclick="checkboxValidate(-1)" render="x" listener="#{userBean.point.setX(-1)}"/>
+                    <f:ajax render="x" listener="#{userBean.point.setX(-1)}"/>
                 </h:selectBooleanCheckbox>
-                <h:selectBooleanCheckbox class="checkbox" value="0"> 0
-                    <f:ajax onclick="checkboxValidate(0)" render="x" listener="#{userBean.point.setX(0)}"/>
+                <h:selectBooleanCheckbox class="checkbox" value="0" id="r0"> 0
+                    <f:ajax render="x" listener="#{userBean.point.setX(0)}"/>
                 </h:selectBooleanCheckbox>
                 <h:selectBooleanCheckbox class="checkbox" value="1"> 1
-                    <f:ajax onclick="checkboxValidate(1)" render="x" listener="#{userBean.point.setX(1)}"/>
+                    <f:ajax render="x" listener="#{userBean.point.setX(1)}"/>
                 </h:selectBooleanCheckbox>
             </div>
 
@@ -150,5 +150,8 @@
 
     <p:remoteCommand name="updateGraph" update="graphPanel" process="@this"/>
     <p:remoteCommand name="addAttempt" action="#{userBean.addFromJS()}" update="outputTable" process="@this"/>
+
+    <script src="./resources/scripts/main.js"/>
+    <script src="./resources/scripts/Printer.js"/>
 </h:body>
 </html>

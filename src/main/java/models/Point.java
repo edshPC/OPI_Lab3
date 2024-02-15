@@ -11,7 +11,8 @@ import java.io.Serializable;
 @SessionScoped
 public class Point implements Serializable {
     private Long id;
-    private Double x, y, r;
+    private Double x;
+    private Double y, r;
     private String currentTime;
     private String executionTime;
     private Boolean success;
