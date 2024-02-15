@@ -37,7 +37,7 @@ public class UserBean implements Serializable {
 //        return "main?faces-redirect=true";
 //    }
 
-    public void add() throws IOException {
+    public String add() throws IOException {
         long timer = System.nanoTime();
         point.setCurrentTime(DateTimeFormatter.ofPattern("HH:mm:ss").format(LocalDateTime.now()));
         point.setSuccess(AreaValidator.checkArea(point));
@@ -51,7 +51,7 @@ public class UserBean implements Serializable {
             this.addPoint(point);
             point = new Point(point.getX(), point.getY(), point.getR());
         }
-//        return "main?faces-redirect=true";
+        return "main.xhtml?faces-redirect=true";
     }
 
     public void addPoint(Point point) {
