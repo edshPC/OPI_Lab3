@@ -38,30 +38,27 @@
         <h:form id="mainForm">
             <div>
                 <label>X:</label>
-                <h:panelGrid columns="1" style="margin-bottom: 10px">
-                    <h:inputHidden id="x" required="true" value="#{userBean.point.x}"/>
-                    <p:selectBooleanCheckbox class="checkbox" value="-5"> -5
+                    <h:selectBooleanCheckbox class="checkbox" value="-5" id="r-5"> -5
                         <f:ajax onevent="checkboxValidate(-5)" render="x" listener="#{userBean.point.setX(-5)}"/>
-                    </p:selectBooleanCheckbox>
-                    <p:selectBooleanCheckbox class="checkbox" value="-4"> -4
+                    </h:selectBooleanCheckbox>
+                    <h:selectBooleanCheckbox class="checkbox" value="-4" id="r-4"> -4
                         <f:ajax onevent="checkboxValidate(-4)" render="x" listener="#{userBean.point.setX(-4)}"/>
-                    </p:selectBooleanCheckbox>
-                    <p:selectBooleanCheckbox class="checkbox" value="-3"> -3
+                    </h:selectBooleanCheckbox>
+                    <h:selectBooleanCheckbox class="checkbox" value="-3"> -3
                         <f:ajax onevent="checkboxValidate(-3)" render="x" listener="#{userBean.point.setX(-3)}"/>
-                    </p:selectBooleanCheckbox>
-                    <p:selectBooleanCheckbox class="checkbox" value="-2"> -2
+                    </h:selectBooleanCheckbox>
+                    <h:selectBooleanCheckbox class="checkbox" value="-2"> -2
                         <f:ajax onevent="checkboxValidate(-2)" render="x" listener="#{userBean.point.setX(-2)}"/>
-                    </p:selectBooleanCheckbox>
-                    <p:selectBooleanCheckbox class="checkbox" value="-1"> -1
+                    </h:selectBooleanCheckbox>
+                    <h:selectBooleanCheckbox class="checkbox" value="-1"> -1
                         <f:ajax onevent="checkboxValidate(-1)" render="x" listener="#{userBean.point.setX(-1)}"/>
-                    </p:selectBooleanCheckbox>
-                    <p:selectBooleanCheckbox class="checkbox" value="0"> 0
+                    </h:selectBooleanCheckbox>
+                    <h:selectBooleanCheckbox class="checkbox" value="0"> 0
                         <f:ajax onevent="checkboxValidate(0)" render="x" listener="#{userBean.point.setX(0)}"/>
-                    </p:selectBooleanCheckbox>
-                    <p:selectBooleanCheckbox class="checkbox" value="1"> 1
+                    </h:selectBooleanCheckbox>
+                    <h:selectBooleanCheckbox class="checkbox" value="1"> 1
                         <f:ajax onevent="checkboxValidate(1)" render="x" listener="#{userBean.point.setX(1)}"/>
-                    </p:selectBooleanCheckbox>
-                </h:panelGrid>
+                    </h:selectBooleanCheckbox>
             </div>
                 <div>
                     <label>Y:</label>
@@ -81,24 +78,21 @@
 
                 <div id="rbtns">
                     <label>R:</label>
-                    <h:panelGrid columns="1" style="margin-bottom: 10px">
-                        <h:commandButton id="cmd1" value="1" type="button" styleClass="r-button">
+                        <h:commandButton id="cmd1" value="1" type="button" class="r-button">
                             <f:ajax onevent="printer.redraw(1)" render="r" listener="#{userBean.point.setR(1)}"/>
                         </h:commandButton>
-                        <h:commandButton id="cmd2" value="2" type="button" styleClass="r-button">
+                        <h:commandButton id="cmd2" value="2" type="button" class="r-button">
                             <f:ajax onevent="printer.redraw(2)" render="r" listener="#{userBean.point.setR(2)}"/>
                         </h:commandButton>
-                        <h:commandButton id="cmd3" value="3" type="button" styleClass="r-button">
+                        <h:commandButton id="cmd3" value="3" type="button" class="r-button">
                             <f:ajax onevent="printer.redraw(3)" render="r" listener="#{userBean.point.setR(3)}"/>
                         </h:commandButton>
-                        <h:commandButton id="cmd4" value="4" type="button" styleClass="r-button">
+                        <h:commandButton id="cmd4" value="4" type="button" class="r-button">
                             <f:ajax onevent="printer.redraw(4)" render="r" listener="#{userBean.point.setR(4)}"/>
                         </h:commandButton>
-                        <h:commandButton id="cmd5" value="5" type="button" styleClass="r-button">
+                        <h:commandButton id="cmd5" value="5" type="button" class="r-button">
                             <f:ajax onevent="printer.redraw(5)" render="r" listener="#{userBean.point.setR(5)}"/>
                         </h:commandButton>
-                    </h:panelGrid>
-
                 </div>
             <div id="btns">
                 <h:commandButton id="checkButton"

@@ -3,9 +3,9 @@ package utils;
 import models.Point;
 
 public class AreaValidator {
-    private static final double X_MAX = 1;
+    private static final double X_MAX = 5;
     private static final double X_MIN = -5;
-    private static final double Y_MAX = 3;
+    private static final double Y_MAX = 5;
     private static final double Y_MIN = -5;
     private static final double R_MAX = 5;
     private static final double R_MIN = 1;

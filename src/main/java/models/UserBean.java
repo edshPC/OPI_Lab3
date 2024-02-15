@@ -2,12 +2,14 @@ package models;
 
 import database.DatabaseHandler;
 import jakarta.annotation.PostConstruct;
-import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.context.FacesContext;
+import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import utils.AreaValidator;
+import utils.DataValidator;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -20,29 +22,39 @@ import java.util.Map;
 public class UserBean implements Serializable {
     private Point point = new Point();
     private ArrayList<Point> requests;
+    @Inject
+    DataValidator dataValidator;
+
     @PostConstruct
-    public void loadPointsFromDb(){
+    public void loadPointsFromDb() {
         this.requests = DatabaseHandler.getDatabaseManager().loadCollection();
     }
 
 
-//    public boolean checkPoint() {
-//        if (point.getY() < -5 || point.getY() > 3) {
-//
-//        }
+//    public String checkPoint() {
+//        if (!dataValidator.isDataCorrect(point.getX(), point.getY(), point.getR()))
+//            return "errorPage?faces-redirect=true";
+//        return "main?faces-redirect=true";
 //    }
 
-    public void add(){
+    public void add() throws IOException {
         long timer = System.nanoTime();
         point.setCurrentTime(DateTimeFormatter.ofPattern("HH:mm:ss").format(LocalDateTime.now()));
         point.setSuccess(AreaValidator.checkArea(point));
         point.setExecutionTime(String.valueOf(String.format("%.2f", ((System.nanoTime() - timer) * 0.000001))));
 
-        this.addPoint(point);
-        point = new Point(point.getX(), point.getY(), point.getR());
+//        if (!dataValidator.isDataCorrect(point.getX(), point.getY(), point.getR()))
+//            return "error?faces-redirect=true";
+        if (!dataValidator.isDataCorrect(point.getX(), point.getY(), point.getR())) {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("error.xhtml");
+        } else {
+            this.addPoint(point);
+            point = new Point(point.getX(), point.getY(), point.getR());
+        }
+//        return "main?faces-redirect=true";
     }
 
-    public void addPoint(Point point){
+    public void addPoint(Point point) {
         DatabaseHandler.getDatabaseManager().addPoint(point);
         this.requests.add(0, point);
     }
@@ -52,7 +64,7 @@ public class UserBean implements Serializable {
         this.requests = new ArrayList<>();
     }
 
-    public void addFromJS(){
+    public void addFromJS() {
         long timer = System.nanoTime();
         final Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
         params.values().forEach(System.out::println);

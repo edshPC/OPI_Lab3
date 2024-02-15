@@ -21,6 +21,7 @@ canvas {
     border-radius: 8px;
     border: #dfd3e3 2px solid;
 }
+
 button, #checkButton {
     background-color: #fffff4;
     border-radius: 8px;
@@ -86,16 +87,13 @@ fieldset {
 .selected {
     background-color: #dfd3e3;
 }
+
 #clearButton {
     margin: 0 0 0 33px;
     font-size: 1.4em;
     height: 40px;
     background-color: #dfd3e3;
     width: 90px;
-}
-
-#xButtons > button:hover {
-    background-color: #c6aec7;
 }
 
 #clearButton:hover, #goBackButton:hover, #goMainButton:hover, #goStartButton:hover {
@@ -209,11 +207,11 @@ header::after {
 #canv {
     float: left;
     width: 410px;
-    margin-left: 250px;
+    margin-left: 100px;
 }
 
 #formInp {
-    margin-left: 800px;
+    margin-left: 600px;
     padding-top: 60px;
 }
 
@@ -226,7 +224,12 @@ header::after {
     margin-left: 100px;
 }
 
-#mainForm\:checkButton:hover, #mainForm\:clearButton:hover, #mainForm\:cmd1:hover, #mainForm\:cmd1:focus, #mainForm\:cmd2:hover, #mainForm\:cmd2:focus, #mainForm\:cmd3:hover, #mainForm\:cmd3:focus, #mainForm\:cmd4:hover, #mainForm\:cmd4:focus, #mainForm\:cmd5:hover, #mainForm\:cmd5:focus{
+#mainForm\:checkButton:hover, #mainForm\:clearButton:hover,
+#mainForm\:cmd1:hover, #mainForm\:cmd1:focus,
+#mainForm\:cmd2:hover, #mainForm\:cmd2:focus,
+#mainForm\:cmd3:hover, #mainForm\:cmd3:focus,
+#mainForm\:cmd4:hover, #mainForm\:cmd4:focus,
+#mainForm\:cmd5:hover, #mainForm\:cmd5:focus{
     background-color: #c6aec7;
 }
 
@@ -241,7 +244,14 @@ header::after {
     margin-left: 10px;
 }
 
-#mainForm\:rbtns {
-    display: flex;
+.r-button {
+    display: inline-block; !important;
+    text-align: center;
     justify-content: space-around;
+    margin-left: 10px;
+    background-color: #fffff4;
+}
+
+.checkbox {
+    margin-right: 13px;
 }
