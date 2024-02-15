@@ -46,7 +46,7 @@ public class UserBean implements Serializable {
 //        if (!dataValidator.isDataCorrect(point.getX(), point.getY(), point.getR()))
 //            return "error?faces-redirect=true";
         if (point.getX() == null || point.getY() == null || point.getR() == null) {
-            return "error.xhtml?faces-redirect=true";
+            FacesContext.getCurrentInstance().getExternalContext().redirect("error.xhtml");
         }
         else if (!dataValidator.isDataCorrect(point.getX(), point.getY(), point.getR())) {
             FacesContext.getCurrentInstance().getExternalContext().redirect("error.xhtml");
