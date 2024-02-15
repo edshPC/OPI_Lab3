@@ -9,7 +9,7 @@ class Printer{
         // if (document.getElementById("rInput")) {
         //     this.lastR = document.getElementById("rInput").value;//null;
         // }
-        console.log(this.lastR);
+        // console.log(this.lastR);
     }
 
     setLastR(r) {

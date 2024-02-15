@@ -45,7 +45,10 @@ public class UserBean implements Serializable {
 
 //        if (!dataValidator.isDataCorrect(point.getX(), point.getY(), point.getR()))
 //            return "error?faces-redirect=true";
-        if (!dataValidator.isDataCorrect(point.getX(), point.getY(), point.getR())) {
+        if (point.getX() == null || point.getY() == null || point.getR() == null) {
+            return "error.xhtml?faces-redirect=true";
+        }
+        else if (!dataValidator.isDataCorrect(point.getX(), point.getY(), point.getR())) {
             FacesContext.getCurrentInstance().getExternalContext().redirect("error.xhtml");
         } else {
             this.addPoint(point);
@@ -68,7 +71,6 @@ public class UserBean implements Serializable {
         long timer = System.nanoTime();
         final Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
         params.values().forEach(System.out::println);
-
         try {
             double x = Double.parseDouble(params.get("x"));
             double y = Double.parseDouble(params.get("y"));
@@ -80,7 +82,7 @@ public class UserBean implements Serializable {
                 attemptBean.setExecutionTime(String.valueOf(String.format("%.2f", ((System.nanoTime() - timer) * 0.000001))));
                 this.addPoint(attemptBean);
             } else {
-                return "error?faces-redirect=true";
+                return "error.xhtml?faces-redirect=true";
 
             }
         } catch (IllegalArgumentException e) {

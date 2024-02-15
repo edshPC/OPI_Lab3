@@ -42,9 +42,9 @@ public class DatabaseManager {
     public void createMainBase() throws SQLException {
         try {
             connection.prepareStatement(DatabaseCommands.createTable).execute();
-            System.out.println("таблица создана");
+            System.out.println("Таблица создана");
         } catch (SQLException e) {
-            System.out.println("aaaaaaaaaaaaaa");
+            System.out.println("Ошибка создания таблицы");
             e.printStackTrace();
         }
     }
@@ -80,7 +80,7 @@ public class DatabaseManager {
                         resultSet.getString("execution_time")
                 ));
             }
-            System.out.println("коллекция загружена");
+            System.out.println("Коллекция загружена");
             return collection;
         } catch (SQLException e) {
             System.err.println("Коллекция пуста либо возникла ошибка при исполнении запроса");
