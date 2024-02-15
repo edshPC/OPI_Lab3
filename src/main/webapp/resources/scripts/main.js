@@ -9,7 +9,7 @@ window.onload = function () {
     });
 }
 
-$(window).bind('load',function () {
+$(window).bind('load', function () {
     let checkboxes = document.getElementsByClassName('checkbox');
     for (let checkbox of checkboxes) {
         checkbox.checked = false;
@@ -20,13 +20,23 @@ $(window).bind('load',function () {
 let checkboxes = document.getElementsByClassName('checkbox');
 for (let checkbox of checkboxes) {
     checkbox.addEventListener('click', function checkboxValidate(event) {
-        // console.log("Method called!");
         for (let checkbox of checkboxes) {
             checkbox.checked = false;
         }
         event.target.checked = true;
         // elem.checked = true;
     });
+}
+
+let rbuttons = document.getElementsByClassName('r-button');
+for (let rbutton of rbuttons) {
+    rbutton.addEventListener('click', function (event) {
+        let buttons = document.querySelectorAll('input[class="r-button"]');
+        for (let button of buttons) {
+            button.style.backgroundColor = '#fffff4';
+        }
+        event.target.style.backgroundColor = '#c6aec7';
+    })
 }
 
 // function checkboxValidate(elem) {
