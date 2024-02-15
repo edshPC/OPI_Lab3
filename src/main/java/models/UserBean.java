@@ -64,7 +64,7 @@ public class UserBean implements Serializable {
         this.requests = new ArrayList<>();
     }
 
-    public void addFromJS() {
+    public String addFromJS() {
         long timer = System.nanoTime();
         final Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
         params.values().forEach(System.out::println);
@@ -73,17 +73,22 @@ public class UserBean implements Serializable {
             double x = Double.parseDouble(params.get("x"));
             double y = Double.parseDouble(params.get("y"));
             double r = Double.parseDouble(params.get("r"));
+            if (x >= -5 && x <= 5 && y >= -5 && y <= 5 && (r == 1 || r == 2 || r == 3 || r == 4 || r == 5)){
+                final Point attemptBean = new Point(x, y, r);
+                attemptBean.setCurrentTime(DateTimeFormatter.ofPattern("HH:mm:ss").format(LocalDateTime.now()));
+                attemptBean.setSuccess(AreaValidator.checkArea(attemptBean));
+                attemptBean.setExecutionTime(String.valueOf(String.format("%.2f", ((System.nanoTime() - timer) * 0.000001))));
+                this.addPoint(attemptBean);
+            } else {
+                return "error?faces-redirect=true";
 
-            final Point attemptBean = new Point(x, y, r);
-            attemptBean.setCurrentTime(DateTimeFormatter.ofPattern("HH:mm:ss").format(LocalDateTime.now()));
-            attemptBean.setSuccess(AreaValidator.checkArea(attemptBean));
-            attemptBean.setExecutionTime(String.valueOf(String.format("%.2f", ((System.nanoTime() - timer) * 0.000001))));
-            this.addPoint(attemptBean);
+            }
         } catch (IllegalArgumentException e) {
             System.out.println(e.getCause());
             System.out.println(e.getMessage());
             System.out.println(e.getLocalizedMessage());
         }
+        return null;
     }
 
     public ArrayList<Point> getRequests() {
