@@ -105,7 +105,8 @@
                             render="outputTable graphPanel"/>
                 </h:commandButton>
                 <h:commandButton id="clearButton"
-                                 value="Clear">
+                                 value="Clear"
+                                 immediate="true">
                     <f:ajax execute="@form"
                             listener="#{userBean.clearRequests()}"
                             render="outputTable graphPanel"/>
