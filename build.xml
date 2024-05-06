@@ -6,7 +6,11 @@
 
     <target name="compile" depends="clean">
         <mkdir dir="${classes.dir}"/>
-        <javac target="${java.ver}" source="${java.ver}" srcdir="${src.dir}" destdir="${classes.dir}" encoding="UTF-8"/>
+        <javac target="${java.ver}" source="${java.ver}" srcdir="${src.dir}" destdir="${classes.dir}" encoding="UTF-8">
+            <classpath>
+                <fileset dir="${user.home}/.m2/repository/" includes="**/*.jar"/>
+            </classpath>
+        </javac>
     </target>
 
     <target name="build" depends="compile">
