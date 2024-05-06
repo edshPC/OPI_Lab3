@@ -15,9 +15,8 @@
 
     <target name="build" depends="compile">
         <jar destfile="${build.dir}/${ant.project.name}.jar" basedir="${classes.dir}" excludes="*Test.class">
-            <fileset dir="${build.dir}">
-                <include name="**/*.class"/>
-            </fileset>
+            <fileset dir="${main.dir}/resources"/>
+            <fileset dir="${main.dir}/webapp"/>
             <manifest>
                 <attribute name="Version" value="${project.ver}"/>
                 <attribute name="Main-Class" value="${main.class}"/>
