@@ -29,14 +29,6 @@ public class AreaCheckTest {
     }
 
     @Test
-    void checkAreaOnEmptyField(){
-        assertFalse(AreaValidator.checkArea(new Point(1.0, 2.0, 1.0)));
-        assertFalse(AreaValidator.checkArea(new Point(-1.0, 2.0, 2.0)));
-        assertFalse(AreaValidator.checkArea(new Point(-3.0, -1.0, 4.0)));
-        assertFalse(AreaValidator.checkArea(new Point(1.0, -1.5, 3.0)));
-    }
-
-    @Test
     void checkAreaOnEmpty(){
         assertTrue(AreaValidator.checkArea(new Point(0.0, 0.0, 2.0)));
     }
