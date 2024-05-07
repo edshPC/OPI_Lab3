@@ -13,16 +13,6 @@
         </javac>
     </target>
 
-    <target name="compile-tests" depends="compile" description="(*) compile tests">
-        <mkdir dir="${test-classes.dir}"/>
-        <javac target="${java.ver}" source="${java.ver}" srcdir="${test.dir}" destdir="${test-classes.dir}" encoding="UTF-8">
-            <classpath>
-                <path location="${classes.dir}"/>
-                <fileset dir="${user.home}/.m2/repository/" includes="**/*.jar"/>
-            </classpath>
-        </javac>
-    </target>
-
     <target name="build" depends="compile" description="(*) build jar file">
         <jar destfile="${build.dir}/${ant.project.name}.jar" basedir="${classes.dir}" excludes="*Test.class">
             <fileset dir="${main.dir}/resources"/>
