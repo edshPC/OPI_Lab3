@@ -4,7 +4,7 @@
     <property file="build.properties"/>
     <property environment="env"/>
 
-    <target name="compile" depends="clean">
+    <target name="compile" depends="clean" description="(*) compile the source">
         <mkdir dir="${classes.dir}"/>
         <javac target="${java.ver}" source="${java.ver}" srcdir="${src.dir}" destdir="${classes.dir}" encoding="UTF-8">
             <classpath>
@@ -13,7 +13,7 @@
         </javac>
     </target>
 
-    <target name="build" depends="compile">
+    <target name="build" depends="compile" description="(*) build jar file">
         <jar destfile="${build.dir}/${ant.project.name}.jar" basedir="${classes.dir}" excludes="*Test.class">
             <fileset dir="${main.dir}/resources"/>
             <fileset dir="${main.dir}/webapp"/>
@@ -24,7 +24,16 @@
         </jar>
     </target>
 
+    <target name="native2ascii" description="(*) преобразование native2ascii для копий файлов локализации">
+        <native2ascii src="${main.dir}/resources"
+                      dest="${main.dir}/native2ascii"
+                      includes="**/*.properties"
+                      encoding="UTF-8"/>
+    </target>
+
     <target name="clean">
         <delete dir="${build.dir}"/>
+        <delete dir="${main.dir}/native2ascii"/>
     </target>
+
 </project>
