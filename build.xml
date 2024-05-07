@@ -13,6 +13,16 @@
         </javac>
     </target>
 
+    <target name="compile-tests" depends="compile" description="(*) compile tests">
+        <mkdir dir="${test-classes.dir}"/>
+        <javac target="${java.ver}" source="${java.ver}" srcdir="${test.dir}" destdir="${test-classes.dir}" encoding="UTF-8">
+            <classpath>
+                <path location="${classes.dir}"/>
+                <fileset dir="${user.home}/.m2/repository/" includes="**/*.jar"/>
+            </classpath>
+        </javac>
+    </target>
+
     <target name="build" depends="compile" description="(*) build jar file">
         <jar destfile="${build.dir}/${ant.project.name}.jar" basedir="${classes.dir}" excludes="*Test.class">
             <fileset dir="${main.dir}/resources"/>
@@ -24,16 +34,37 @@
         </jar>
     </target>
 
-    <target name="native2ascii" description="(*) преобразование native2ascii для копий файлов локализации">
+    <target name="test" depends="build" description="(*) run tests">
+        <mkdir dir="${report.dir}/test"/>
+        <junitlauncher printsummary="true">
+            <classpath>
+                <path location="${classes.dir}"/>
+                <fileset dir="${user.home}/.m2/repository/" includes="**/*.jar"/>
+            </classpath>
+            <testclasses outputdir="${report.dir}/test">
+                <fileset dir="${classes.dir}">
+                    <include name="${test.class}"/>
+                </fileset>
+                <listener type="legacy-xml"
+                          sendSysOut="true"
+                          sendSysErr="true"/>
+            </testclasses>
+        </junitlauncher>
+    </target>
+
+    <target name="native2ascii" description="(*) convert properties files to ASCII format using native2ascii">
         <native2ascii src="${main.dir}/resources"
                       dest="${main.dir}/native2ascii"
-                      includes="**/*.properties"
-                      encoding="UTF-8"/>
+                      includes="**/*.properties"/>
+    </target>
+
+    <target name="history" depends="compile" description="(*) load previous version from git repository if compilation fails">
     </target>
 
     <target name="clean">
         <delete dir="${build.dir}"/>
         <delete dir="${main.dir}/native2ascii"/>
+        <delete dir="${report.dir}"/>
     </target>
 
 </project>
