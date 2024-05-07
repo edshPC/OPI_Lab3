@@ -47,5 +47,4 @@
         <delete dir="${build.dir}"/>
         <delete dir="${main.dir}/native2ascii"/>
     </target>
-
 </project>
