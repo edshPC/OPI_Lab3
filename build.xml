@@ -4,12 +4,14 @@
     <property file="build.properties"/>
     <property environment="env"/>
 
+    <path id="classpath">
+        <fileset dir="${user.home}/.m2/repository/" includes="**/*.jar"/>
+    </path>
+
     <target name="compile" depends="clean" description="(*) compile the source">
         <mkdir dir="${classes.dir}"/>
         <javac target="${java.ver}" source="${java.ver}" srcdir="${src.dir}" destdir="${classes.dir}" encoding="UTF-8">
-            <classpath>
-                <fileset dir="${user.home}/.m2/repository/" includes="**/*.jar"/>
-            </classpath>
+            <classpath refid="classpath" />
         </javac>
     </target>
 
@@ -27,8 +29,8 @@
     <target name="test" depends="compile" description="(*) run tests">
         <junit printsummary="on">
             <classpath>
+                <path refid="classpath"/>
                 <pathelement location="${classes.dir}"/>
-                <fileset dir="${user.home}/.m2/repository/" includes="**/*.jar"/>
             </classpath>
             <test name="${test.class}"/>
             <formatter type="plain" usefile="false"/>
@@ -41,8 +43,69 @@
                       includes="**/*.properties"/>
     </target>
 
-    <target name="history" depends="compile" description="(*) load previous version from git repository if compilation fails">
+    <taskdef resource="net/sf/antcontrib/antlib.xml">
+        <classpath refid="classpath"/>
+    </taskdef>
+
+    <target name="history" description="(*) load previous version from git repository if compilation fails">
+        <trycatch>
+            <try>
+                <antcall target="compile"/>
+            </try>
+            <catch>
+                <load-previous-revision/>
+                <exec executable="git" outputproperty="git.curr_commit">
+                    <arg value="rev-parse"/>
+                    <arg value="HEAD"/>
+                </exec>
+            </catch>
+        </trycatch>
     </target>
+
+    <macrodef name="load-previous-revision">
+        <sequential>
+            <exec executable="git" outputproperty="git.next_commit">
+                <arg value="rev-parse"/>
+                <arg value="HEAD"/>
+            </exec>
+            <exec executable="git" outputproperty="git.reverse_commits">
+                <arg value="log"/>
+                <arg value="--pretty=oneline"/>
+                <arg value="--reverse"/>
+            </exec>
+            <propertyregex property="git.first_commit" input="${git.reverse_commits}" regexp="(\w+)" select="\1"/>
+            <if>
+                <not>
+                    <equals arg1="${git.first_commit}" arg2="${git.next_commit}"/>
+                </not>
+                <then>
+                    <exec executable="git">
+                        <arg value="checkout"/>
+                        <arg value="-f"/>
+                        <arg value="HEAD^"/>
+                    </exec>
+                    <trycatch>
+                        <try>
+                            <antcall target="compile"/>
+                            <exec executable="git">
+                                <arg value="diff"/>
+                                <arg value="${git.next_commit}"/>
+                                <redirector output="history_diff.txt"/>
+                            </exec>
+                            <exec executable="git">
+                                <arg value="checkout"/>
+                                <arg value="main"/>
+                            </exec>
+                        </try>
+                        <catch>
+                            <load-previous-revision/>
+                        </catch>
+                    </trycatch>
+                </then>
+            </if>
+        </sequential>
+    </macrodef>
+
 
     <target name="clean">
         <delete dir="${build.dir}"/>

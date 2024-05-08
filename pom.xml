@@ -92,6 +92,12 @@
             <version>1.10.14</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>ant-contrib</groupId>
+            <artifactId>ant-contrib</artifactId>
+            <version>1.0b3</version>
+        </dependency>
+
 
     </dependencies>
 
