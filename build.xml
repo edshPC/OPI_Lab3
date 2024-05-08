@@ -24,13 +24,14 @@
         </jar>
     </target>
 
-    <target name="test" depends="build" description="(*) run tests">
-        <junit printsummary="true">
+    <target name="test" depends="compile" description="(*) run tests">
+        <junit printsummary="on">
             <classpath>
-                <path location="${classes.dir}"/>
+                <pathelement location="${classes.dir}"/>
                 <fileset dir="${user.home}/.m2/repository/" includes="**/*.jar"/>
             </classpath>
             <test name="${test.class}"/>
+            <formatter type="plain" usefile="false"/>
         </junit>
     </target>
 
