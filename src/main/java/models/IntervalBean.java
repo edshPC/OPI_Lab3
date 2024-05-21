@@ -4,22 +4,27 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.context.Destroyed;
 import jakarta.enterprise.context.Initialized;
 import jakarta.enterprise.event.Observes;
+import jakarta.inject.Inject;
 import jakarta.inject.Named;
-import utils.MBeanRegistryUtil;
+import utils.MBeanRegUtil;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
-@Named
+@Named("intervalBean")
 @ApplicationScoped
-public class PointIntervalTracker implements PointIntervalTrackerMBean {
+public class IntervalBean implements IntervalMXBean, Serializable {
+
+    @Inject
+    UserBean userBean;
 
     public void init(@Observes @Initialized(ApplicationScoped.class) Object unused) {
-        MBeanRegistryUtil.registerBean(this, "PointIntervalTrackerMBean");
+        MBeanRegUtil.registerBean(this, "interval");
     }
 
     public void destroy(@Observes @Destroyed(ApplicationScoped.class) Object unused) {
-        MBeanRegistryUtil.unregisterBean(this);
+        MBeanRegUtil.unregisterBean(this);
     }
 
     private static long DAY = 86400000L;

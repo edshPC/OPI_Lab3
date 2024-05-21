@@ -4,7 +4,6 @@ import models.Point;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.Properties;
 
 public class DatabaseManager {
@@ -65,11 +64,11 @@ public class DatabaseManager {
         }
     }
 
-    public LinkedList<Point> loadCollection(){
+    public ArrayList<Point> loadCollection(){
         try {
             PreparedStatement ps = connection.prepareStatement(DatabaseCommands.getPoints);
             ResultSet resultSet = ps.executeQuery();
-            LinkedList<Point> collection = new LinkedList<>();
+            ArrayList<Point> collection = new ArrayList<>();
             while (resultSet.next()){
                 collection.add(0, new Point(
                         resultSet.getLong("id"),
@@ -85,7 +84,7 @@ public class DatabaseManager {
             return collection;
         } catch (SQLException e) {
             System.err.println("Коллекция пуста либо возникла ошибка при исполнении запроса");
-            return new LinkedList<>();
+            return new ArrayList<>();
         }
     }
 

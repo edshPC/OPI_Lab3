@@ -1,15 +1,17 @@
 package utils;
 
 import jakarta.servlet.ServletContextListener;
+import lombok.experimental.UtilityClass;
 
 import javax.management.*;
 import java.lang.management.ManagementFactory;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MBeanRegistryUtil implements ServletContextListener {
+@UtilityClass
+public class MBeanRegUtil implements ServletContextListener {
 
-    private static final Map<Class<?>, ObjectName> beans = new HashMap<>();
+    private final static Map<Class<?>, ObjectName> beans = new HashMap<>();
 
     public static void registerBean(Object bean, String name) {
         try {
@@ -18,14 +20,11 @@ public class MBeanRegistryUtil implements ServletContextListener {
             ObjectName objectName = new ObjectName(String.format("%s:type=%s,name=%s", domain, type, name));
             ManagementFactory.getPlatformMBeanServer().registerMBean(bean, objectName);
             beans.put(bean.getClass(), objectName);
+            System.out.println("reg " + name);
         } catch (InstanceAlreadyExistsException | MBeanRegistrationException | NotCompliantMBeanException |
                  MalformedObjectNameException ex) {
             ex.printStackTrace();
         }
-    }
-
-    public static boolean is_registered(Object bean){
-        return beans.containsKey(bean.getClass());
     }
 
     public static void unregisterBean(Object bean) {

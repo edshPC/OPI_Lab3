@@ -1,6 +1,6 @@
 package models;
 
-public interface PointIntervalTrackerMBean {
+public interface IntervalMXBean {
     String getInterval();
     void click();
 }
