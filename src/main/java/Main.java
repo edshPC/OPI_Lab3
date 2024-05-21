@@ -5,7 +5,6 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Error
         Scanner sc = new Scanner(System.in);
         var point = new Point();
         System.out.println("Enter point:");
