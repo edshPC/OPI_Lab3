@@ -38,4 +38,8 @@ public class MBeanRegUtil implements ServletContextListener {
             ex.printStackTrace();
         }
     }
+
+    public static Object getBeanInstance(Class<?> clazz) {
+        return beans.get(clazz);
+    }
 }
