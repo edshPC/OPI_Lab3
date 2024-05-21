@@ -35,6 +35,8 @@ public class UserBean extends NotificationBroadcasterSupport implements UserMXBe
     int failedAttempts = 0;
     @Inject
     DataValidator dataValidator;
+    @Inject
+    IntervalBean intervalBean;
 
     @PostConstruct
     public void loadPointsFromDb() {
@@ -70,6 +72,7 @@ public class UserBean extends NotificationBroadcasterSupport implements UserMXBe
     public void addPoint(Point point) {
         DatabaseHandler.getDatabaseManager().addPoint(point);
         this.requests.add(0, point);
+        intervalBean.click();
 
         boolean success = point.getSuccess();
         if (!success) {
