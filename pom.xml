@@ -97,6 +97,12 @@
             <artifactId>ant-contrib</artifactId>
             <version>1.0b3</version>
         </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>RELEASE</version>
+            <scope>provided</scope>
+        </dependency>
 
 
     </dependencies>
