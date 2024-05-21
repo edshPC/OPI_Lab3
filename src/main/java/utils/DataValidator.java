@@ -11,7 +11,7 @@ import java.util.Arrays;
 public class DataValidator implements Serializable {
 //    Integer[] allowedR = new Integer[] {1, 2, 3, 4, 5};
 
-    public boolean isDataCorrect(Double x, Double y, Double r) {
+    public static boolean isDataCorrect(Double x, Double y, Double r) {
         return /*Arrays.asList(allowedR).contains(r)*/
                 (r == 1 || r == 2 || r == 3 || r == 4 || r ==5)
                 && y >= -5 && y <= 3

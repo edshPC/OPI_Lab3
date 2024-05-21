@@ -14,6 +14,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Map;
 
 
@@ -21,7 +22,7 @@ import java.util.Map;
 @SessionScoped
 public class UserBean implements Serializable {
     private Point point = new Point();
-    private ArrayList<Point> requests;
+    private LinkedList<Point> requests;
     @Inject
     DataValidator dataValidator;
 
@@ -64,7 +65,7 @@ public class UserBean implements Serializable {
 
     public void clearRequests() {
         DatabaseHandler.getDatabaseManager().clearCollection();
-        this.requests = new ArrayList<>();
+        this.requests = new LinkedList<>();
     }
 
     public String addFromJS() {
@@ -93,11 +94,11 @@ public class UserBean implements Serializable {
         return null;
     }
 
-    public ArrayList<Point> getRequests() {
+    public LinkedList<Point> getRequests() {
         return requests;
     }
 
-    public void setRequests(ArrayList<Point> requests) {
+    public void setRequests(LinkedList<Point> requests) {
         this.requests = requests;
     }
 

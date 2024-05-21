@@ -8,7 +8,7 @@ import org.primefaces.event.SlideEndEvent;
 import java.io.Serializable;
 
 @Named("abstractPoint")
-@SessionScoped
+@ApplicationScoped
 public class Point implements Serializable {
     private Long id;
     private Double x;
