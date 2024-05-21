@@ -73,8 +73,7 @@ public class UserBean extends NotificationBroadcasterSupport implements UserMXBe
 
         boolean success = point.getSuccess();
         if (!success) {
-            failedAttempts++;
-            if (failedAttempts == 4) {
+            if (++failedAttempts == 4) {
                 Notification notification = new Notification(
                         "Four failed attempts",
                         getClass().getSimpleName(),
