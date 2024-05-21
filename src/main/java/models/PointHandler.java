@@ -6,6 +6,7 @@ import jakarta.enterprise.context.Destroyed;
 import jakarta.enterprise.context.Initialized;
 import jakarta.enterprise.event.Observes;
 import jakarta.faces.context.FacesContext;
+import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import utils.AreaValidator;
 import utils.MBeanRegistryUtil;
@@ -28,6 +29,8 @@ public class PointHandler extends NotificationBroadcasterSupport implements Seri
 
     private Point point = new Point();
     private LinkedList<Point> points = new LinkedList<>();
+    @Inject
+    DataValidator dataValidator;
     private int sequenceNumber = 1;
     private int failedAttempts = 0;
 
@@ -61,7 +64,7 @@ public class PointHandler extends NotificationBroadcasterSupport implements Seri
         if (point.getX() == null || point.getY() == null || point.getR() == null) {
             FacesContext.getCurrentInstance().getExternalContext().redirect("error.xhtml");
         }
-        else if (!DataValidator.isDataCorrect(point.getX(), point.getY(), point.getR())) {
+        else if (!dataValidator.isDataCorrect(point.getX(), point.getY(), point.getR())) {
             FacesContext.getCurrentInstance().getExternalContext().redirect("error.xhtml");
         } else {
             this.addPoint(point);
@@ -114,6 +117,19 @@ public class PointHandler extends NotificationBroadcasterSupport implements Seri
         } else {
             failedAttempts = 0;
         }
+    }
+
+    public LinkedList<Point> getRequests() {
+        return points;
+    }
+
+    public void setRequests(LinkedList<Point> points) {
+        this.points = points;
+    }
+
+    public void clearRequests() {
+        DatabaseHandler.getDatabaseManager().clearCollection();
+        this.points = new LinkedList<>();
     }
 
     @Override

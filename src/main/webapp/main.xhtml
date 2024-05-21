@@ -40,25 +40,25 @@
             <div>
                 <label>X:</label>
                 <h:selectBooleanCheckbox class="checkbox" value="-5" id="r-5"> -5
-                    <f:ajax render="x" listener="#{userBean.point.setX(-5)}"/>
+                    <f:ajax render="x" listener="#{pointHandler.point.setX(-5)}"/>
                 </h:selectBooleanCheckbox>
                 <h:selectBooleanCheckbox class="checkbox" value="-4" id="r-4"> -4
-                    <f:ajax render="x" listener="#{userBean.point.setX(-4)}"/>
+                    <f:ajax render="x" listener="#{pointHandler.point.setX(-4)}"/>
                 </h:selectBooleanCheckbox>
                 <h:selectBooleanCheckbox class="checkbox" value="-3" id="r-3"> -3
-                    <f:ajax render="x" listener="#{userBean.point.setX(-3)}"/>
+                    <f:ajax render="x" listener="#{pointHandler.point.setX(-3)}"/>
                 </h:selectBooleanCheckbox>
                 <h:selectBooleanCheckbox class="checkbox" value="-2" id="r-2"> -2
-                    <f:ajax render="x" listener="#{userBean.point.setX(-2)}"/>
+                    <f:ajax render="x" listener="#{pointHandler.point.setX(-2)}"/>
                 </h:selectBooleanCheckbox>
                 <h:selectBooleanCheckbox class="checkbox" value="-1" id="r-1"> -1
-                    <f:ajax render="x" listener="#{userBean.point.setX(-1)}"/>
+                    <f:ajax render="x" listener="#{pointHandler.point.setX(-1)}"/>
                 </h:selectBooleanCheckbox>
                 <h:selectBooleanCheckbox class="checkbox" value="0" id="r0"> 0
-                    <f:ajax render="x" listener="#{userBean.point.setX(0)}"/>
+                    <f:ajax render="x" listener="#{pointHandler.point.setX(0)}"/>
                 </h:selectBooleanCheckbox>
                 <h:selectBooleanCheckbox class="checkbox" value="1" id="r1"> 1
-                    <f:ajax render="x" listener="#{userBean.point.setX(1)}"/>
+                    <f:ajax render="x" listener="#{pointHandler.point.setX(1)}"/>
                 </h:selectBooleanCheckbox>
             </div>
 
@@ -66,7 +66,7 @@
                 <label>Y:</label>
                 <h:inputText name="y"
                              type="text"
-                             value="#{userBean.point.y}"
+                             value="#{pointHandler.point.y}"
                              id="yInput"
                              maxlength="15"
                              validatorMessage="Must be in (-5, 3)"
@@ -82,40 +82,40 @@
             <div id="rbtns">
                 <label>R:</label>
                 <h:commandButton id="cmd1" value="1" type="button" class="r-button">
-                    <f:ajax onevent="printer.redraw(1)" render="r" listener="#{userBean.point.setR(1)}"/>
+                    <f:ajax onevent="printer.redraw(1)" render="r" listener="#{pointHandler.point.setR(1)}"/>
                 </h:commandButton>
                 <h:commandButton id="cmd2" value="2" type="button" class="r-button">
-                    <f:ajax onevent="printer.redraw(2)" render="r" listener="#{userBean.point.setR(2)}"/>
+                    <f:ajax onevent="printer.redraw(2)" render="r" listener="#{pointHandler.point.setR(2)}"/>
                 </h:commandButton>
                 <h:commandButton id="cmd3" value="3" type="button" class="r-button">
-                    <f:ajax onevent="printer.redraw(3)" render="r" listener="#{userBean.point.setR(3)}"/>
+                    <f:ajax onevent="printer.redraw(3)" render="r" listener="#{pointHandler.point.setR(3)}"/>
                 </h:commandButton>
                 <h:commandButton id="cmd4" value="4" type="button" class="r-button">
-                    <f:ajax onevent="printer.redraw(4)" render="r" listener="#{userBean.point.setR(4)}"/>
+                    <f:ajax onevent="printer.redraw(4)" render="r" listener="#{pointHandler.point.setR(4)}"/>
                 </h:commandButton>
                 <h:commandButton id="cmd5" value="5" type="button" class="r-button">
-                    <f:ajax onevent="printer.redraw(5)" render="r" listener="#{userBean.point.setR(5)}"/>
+                    <f:ajax onevent="printer.redraw(5)" render="r" listener="#{pointHandler.point.setR(5)}"/>
                 </h:commandButton>
             </div>
             <div id="btns">
                 <h:commandButton id="checkButton"
                                  value="Submit">
                     <f:ajax execute="@form"
-                            listener="#{userBean.add()}"
+                            listener="#{pointHandler.add()}"
                             render="outputTable graphPanel"/>
                 </h:commandButton>
                 <h:commandButton id="clearButton"
                                  value="Clear"
                                  immediate="true">
                     <f:ajax execute="@form"
-                            listener="#{userBean.clearRequests()}"
+                            listener="#{pointHandler.clearRequests()}"
                             render="outputTable graphPanel"/>
                 </h:commandButton>
             </div>
         </h:form>
     </div>
     <div id="resultTable">
-        <h:dataTable id="outputTable" value="#{userBean.requests}" var="point">
+        <h:dataTable id="outputTable" value="#{pointHandler.points}" var="point">
             <p:remoteCommand name=""/>
             <h:column>
                 <f:facet name="header">X</f:facet>
@@ -145,13 +145,12 @@
     </div>
     <h:panelGroup id="graphPanel">
         <h:outputScript>
-            if(printer) printer.redraw(${userBean.point.r});
+            if(printer) printer.redraw(${pointHandler.point.r});
         </h:outputScript>
     </h:panelGroup>
-    <!--    printer.setLastR(${userBean.point.r})-->
 
     <p:remoteCommand name="updateGraph" update="graphPanel" process="@this"/>
-    <p:remoteCommand name="addAttempt" action="#{userBean.addFromJS()}" update="outputTable" process="@this"/>
+    <p:remoteCommand name="addAttempt" action="#{pointHandler.addFromJS()}" update="outputTable" process="@this"/>
 
     <script src="./resources/scripts/main.js"/>
     <script src="./resources/scripts/Printer.js"/>
