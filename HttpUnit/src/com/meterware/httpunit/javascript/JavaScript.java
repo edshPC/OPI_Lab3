@@ -24,7 +24,7 @@ import com.meterware.httpunit.*;
 import com.meterware.httpunit.scripting.*;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.io.IOException;
 import java.net.URL;
 
@@ -43,8 +43,8 @@ public class JavaScript {
 
     private static boolean _throwExceptionsOnError = true;
 
-    private static ArrayList _errorMessages = new ArrayList();
-
+    private static LinkedList _errorMessages = new LinkedList();
+    private static final int ERROR_MESSAGES_MAX_SIZE = 1024;
 
     static boolean isThrowExceptionsOnError() {
         return _throwExceptionsOnError;
@@ -202,6 +202,8 @@ public class JavaScript {
                 throw new ScriptException( errorMessage );
             } else {
                 _errorMessages.add( errorMessage );
+                if (_errorMessages.size() > ERROR_MESSAGES_MAX_SIZE)
+                    _errorMessages.removeFirst();
             }
         }
 
